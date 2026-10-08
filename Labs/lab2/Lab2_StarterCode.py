@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 """
-YOUR FULL NAME HERE
-YOUR STUDENT ID HERE
+Derek Rioveros
+14819708
 
 ASSIGNMENT: COMPLETE play_MAB_ave and plot_MAB functions below
 """
@@ -81,11 +81,11 @@ average of play_MAB(m, n, t) over N independent trials:
 # Monte Carlo average of play_MAB(m, n, t) over N trials
 def play_MAB_ave(m, n, t, N):
     # 1. results: list of N results of play_MAB(m, n, t)
-    pass
+    results = [play_MAB(m, n, t) for _ in range(N)]
     # 2. good: the results that are >= 0
-    pass
+    good = [results >= 0]
     # 3. return the average of good (replace the 0)
-    return 0
+    return sum(good)/len(good)
 
 """
 COMPLETE:
