@@ -98,16 +98,14 @@ def randomGame(b):
 	p = 1 # player 1 goes first
 	# continue to play until board is full
 	# replace True with stopping criterion using boardFull(b)
-	while True
-	
-	#not boardFull(b):
+	while not boardFull(b):
 		# make a random play
-		#b = randomPlay(b, p)
+		b = randomPlay(b, p)
 		# check for a win
-		#if ckWin(b):
-		#	break
+		if ckWin(b):
+			break
 		# toggle player
-		#p = 2 if p == 1 else 1
+		p = 2 if p == 1 else 1
 	# board is full
 	return b
 
