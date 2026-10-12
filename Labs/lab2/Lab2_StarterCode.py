@@ -83,7 +83,7 @@ def play_MAB_ave(m, n, t, N):
     # 1. results: list of N results of play_MAB(m, n, t)
     results = [play_MAB(m, n, t) for _ in range(N)]
     # 2. good: the results that are >= 0
-    good = [results >= 0]
+    good = [i for i in results if i >= 0]
     # 3. return the average of good (replace the 0)
     return sum(good)/len(good)
 
@@ -109,21 +109,22 @@ filename: the file to save the plot to
 # Plot the average fraction of the best wealth against n
 def plot_MAB(m, N, n_set, t_set, f_set, filename):
     # 1. start a new figure
-    pass
+    plt.figure()
     # 2. one labeled curve per t: zip over f_set and t_set
-    pass
+    for f, t in zip(f_set, t_set):
+        plt.plot(n_set, f, label=f't = {t}')
     # 3. x-axis label
-    pass
+    plt.xlabel('number of pulls')
     # 4. y-axis label
-    pass
+    plt.ylabel('fraction of wealth')
     # 5. title, including m and N
-    pass
+    plt.title(f'fraction of wealth vs n (m={m}, N={N})')
     # 6. legend
-    pass
+    plt.legend()
     # 7. save to filename
-    pass
+    plt.savefig("lab2.pdf")
     # 8. show
-    pass
+    plt.show()
 
 # Main program
 if __name__ == "__main__":
