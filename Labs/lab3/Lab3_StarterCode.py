@@ -94,7 +94,16 @@ def fit_zipf(c, kmin, kmax):
     fit_zipf(np.array([5000, 900, 400, 1]), 2, 3)
         returns (-2.0, 3600.0)
     """
-    return 0, 0
+
+    k = np.arange(kmin, kmax + 1)
+    counts = c[kmin - 1:kmax]
+
+    m, b = np.polyfit(np.log10(k), np.log10(counts), 1)
+
+    C = 10**b
+
+    return m, C
+    #return 0, 0
 
 # The n most common words, as a set
 def top_words(counts, n):
@@ -138,6 +147,16 @@ def plot_zipf(c_set, fits, names, kmin, kmax, filename):
 
 # Main program
 if __name__ == "__main__":
+
+    m, C = fit_zipf(np.array([600, 300, 200, 150]), 1, 4)
+    print("Example 1:", round(m, 6), round(C, 6))
+
+    m, C = fit_zipf(np.array([5000, 900, 400, 1]), 2, 3)
+    print("Example 2:", round(m, 6), round(C, 6))
+
+    quit()
+
+
     books = {"A Tale of Two Cities": "two_cities.txt",
              "King James Bible": "kjv.txt",
              "Don Quijote": "quijote.txt"}
