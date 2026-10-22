@@ -63,11 +63,16 @@ Example: count_words(["the", "cat", "saw", "the", "dog"]) returns
 # Count each distinct word in ws
 def count_words(ws):
     # 1. counts: an empty dictionary
-    pass
+    counts = {}
     # 2. each word: seen before, add one; otherwise, start at one
-    pass
+    for word in ws:
+        if word in counts:
+            counts[word] = counts[word] + 1
+        else:
+            counts[word] = 1
+
     # 3. return counts (replace the {})
-    return {}
+    return counts
 
 # The counts, largest first, as an array: c[0] is the count of rank 1
 def rank_counts(counts):
@@ -94,7 +99,15 @@ def fit_zipf(c, kmin, kmax):
     fit_zipf(np.array([5000, 900, 400, 1]), 2, 3)
         returns (-2.0, 3600.0)
     """
-    return 0, 0
+    k = np.arange(kmin, kmax + 1)
+    counts = c[kmin - 1:kmax]
+
+    m, b = np.polyfit(np.log10(k), np.log10(counts), 1)
+
+    C = 10**b
+
+    return m, C
+    #return 0, 0
 
 # The n most common words, as a set
 def top_words(counts, n):
@@ -115,9 +128,11 @@ returns ({"b"}, {"a"}, {"c"})
 # Compare the n most common words of two books
 def compare_top(counts_a, counts_b, n):
     # 1. top_a, top_b: the n most common words of each book
-    pass
+    top_a = top_words(counts_a, n)
+    top_b = top_words(counts_b, n)
+
     # 2. return: in both, in a only, in b only (replace the sets)
-    return set(), set(), set()
+    return top_a & top_b, top_a - top_b, top_b - top_a
 
 # Plot count against rank on log-log axes: one set of dots per book,
 # and a dashed line for each fit, over the fitted ranks
