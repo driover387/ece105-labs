@@ -101,11 +101,18 @@ and b_n is about 2 / (pi n) for odd n, about 0 for even n
 # The coefficients a0, a, b of f, with broadcasting
 def coefficients(f, N, M=4096):
     # 1. x, fx, and n
-    pass
+    x = samples(M)
+    fx = f(x)
+    n = np.arange(1, N+1)
+    
     # 2. a0
-    pass
+    a0 = 2 * np.mean(fx)
+
     # 3.-4. a and b, each of shape (N,) (replace 0 and the zeros)
-    return 0, np.zeros(N), np.zeros(N)
+    a = 2 * np.mean(fx[:, None] * np.cos(x[:, None] * n), axis=0)
+    b = 2 * np.mean(fx[:, None] * np.sin(x[:, None] * n), axis=0)
+
+    return a0, a, b
 
 """
 COMPLETE (#3, with broadcasting, no loop):
