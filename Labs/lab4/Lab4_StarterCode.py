@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 """
-YOUR FULL NAME HERE
-YOUR STUDENT ID HERE
+Derek Rioveros 
+14819708
 
 ASSIGNMENT: COMPLETE ramp, triangle, coefficients, and fs below,
 and one more test in test_lab4.py
@@ -60,12 +60,12 @@ triangle(x) returns [3, 1, 0, 1, 3]
 # Ramp: 0 on [-pi, 0), x on [0, pi); repeats every 2 pi
 def ramp(x):
     # replace np.zeros_like(x) with np.where(...)
-    return np.zeros_like(x)
+    return np.where(wrap(x) >= 0, wrap(x), 0.0)
 
 # Triangle: |x| on [-pi, pi); repeats every 2 pi
 def triangle(x):
     # replace np.zeros_like(x) with np.where(...)
-    return np.zeros_like(x)
+    return np.where(wrap(x) >= 0, wrap(x), -wrap(x))
 
 # M sample points on one period: cut [-pi, pi) into M equal pieces,
 # and take the middle of each (so no point falls on a jump)
