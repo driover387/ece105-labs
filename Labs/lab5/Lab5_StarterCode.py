@@ -95,9 +95,14 @@ Example: champion(length, 10) is (9, 20): the sequence from 9 has
 # The n from 1 to n_max with the largest f(n), and f(n)
 def champion(f, n_max):
     # 1.-2. best
-    pass
+    best = 1
+
     # 3. return (replace 0, 0)
-    return 0, 0
+    for n in range(2, n_max + 1):
+            if f(n) > f(best):
+                best = n
+                
+    return best, f(best)
 
 """
 COMPLETE (#3):
