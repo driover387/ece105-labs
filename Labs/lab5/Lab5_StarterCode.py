@@ -123,15 +123,23 @@ cdf    is [0.2, 0.3, 0.4, 0.7, 0.8, 0.9, 1.0]
 # The values in data, and their PMF and CDF
 def pmf_cdf(data):
     # 1. counts
-    pass
+    counts = Counter(data)
     # 2. values
-    pass
+    values = sorted(counts)
     # 3. pmf
-    pass
+    pmf = []
+    for value in values:
+        pmf.append(counts[value] / len(data))
     # 4. cdf
-    pass
+    cdf = []
+    running_total = 0
+
+    for value in values:
+        running_total += counts[value]
+        cdf.append(running_total / len(data))
+
     # return the three lists (replace the empty ones)
-    return [], [], []
+    return values, pmf, cdf
 
 # The median: the first value where the CDF reaches 1/2
 # (0 if there are no values)
