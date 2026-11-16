@@ -1,0 +1,8 @@
+[project]
+name = "chaos"
+version = "0.1.0"
+description = "The chaos game (ECE 105, Lab 6)"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]       # tests can import chaos
+testpaths = ["tests"]    # where the tests are
