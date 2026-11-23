@@ -28,7 +28,7 @@ class NotSame(Rule):
     def choices(self, k, current):
         # 1. every index from 0 to k - 1 except current
         #    (replace the line below)
-        return list(range(k))
+        return [i for i in range(k) if i != current]
 
     def __repr__(self):
         return "NotSame()"
@@ -46,12 +46,12 @@ class Avoid(Rule):
     def __init__(self, offset):
         # 2. store offset as an attribute, so choices can use it
         #    (replace None with the right value)
-        self.offset = None
+        self.offset = offset
 
     def choices(self, k, current):
         # 3. every index from 0 to k - 1 except the one ruled out,
         #    (current + self.offset) % k (replace the line below)
-        return list(range(k))
+        return [i for i in range(k) if i != (current + self.offset) % k]
 
     def __repr__(self):
         return f"Avoid({self.offset})"
